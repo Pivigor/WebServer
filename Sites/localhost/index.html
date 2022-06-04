@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+Метод GET
+<form class="adduser" action="env.env" method="GET">
+    Добавить пользователя<br>
+    Логин: <input type="text" name="login"><br><br>
+    <!-- Пароль: <input type="password" name="pass"><br><br> -->
+    <input id="submitForm" type="submit" value="GET">
+</form>
+<form class="myclass" action="cat.cat" method="POST">
+    Добавить пользователя<br>
+    Логин: <input type="text" name="login"><br><br>
+    <!-- Пароль: <input type="password" name="pass"><br><br> -->
+    <input type="submit" value="POST">
+</form>
+
+<!-- HTML5 Input Form Elements -->
+<input id="fileupload" type="file" name="fileupload" />
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+<!-- Ajax JavaScript File Upload Logic -->
+<script>
+    async function uploadFile() {
+        const text = await new Response(fileupload.files[0]).text()
+
+        await fetch('/cgi-bin/upload' +
+            '?filename=' + fileupload.files[0].name +
+            '&fileext=' + fileupload.files[0].name.split('.').pop(), {
+            method: "POST",
+            body: text
+        });
+        alert('The file has been uploaded successfully.');
+    }
+</script>
+
+
+<form action="/cgi-bin/upload" method="POST">
+    <input type="file" id="myFile" name="filename">
+    <input type="submit" value="POST">
+</form>
+
+Метод POST
+<form class="all_user" action="" method="POST">
+    Посмотреть всех пользователей<br>
+    <!-- Логин: <input type="text" name="login"><br><br> -->
+    <!-- Пароль: <input type="password" name="pass"><br><br> -->
+    <input id="submitForm-2" type="submit">
+</form>
+<div class="otvet"></div>
+
+<form class="show_user" action="" method="POST">
+    Показать логин пользователя по id<br>
+    ID: <input type="text" name="showbyid"><br><br>
+    <!-- Пароль: <input type="password" name="pass"><br><br> -->
+    <input type="submit">
+</form>
+<div class="otvet2"></div>
+<form class="update_user" action="" method="POST">
+    Изменить логин пользователя<br>
+    Старый Логин: <input type="text" name="findbylogin"><br><br>
+    Новый Логин: <input type="text" name="newlogin"><br><br>
+    <!-- Пароль: <input type="password" name="pass"><br><br> -->
+    <input type="submit">
+</form>
+<div class="otvet3"></div>
+
+    <script>
+        $("#submitForm").click(function() {
+      alert("The Form has been Submitted.");
+   });
+
+   $("#submitForm-2").click(function() {
+      alert("The Form has been Submitted.");
+   });
+    </script>
+
+    <script  src="jquery-3.3.1.min.js"></script>
+    <script  src="main.js"></script>
+</body>
+</html>
